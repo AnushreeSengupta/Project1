@@ -19,7 +19,7 @@ def test_code(browsertype):
 
     actionChains =ActionChains(driver)
 
-
+#Go to website and login with the default credentials
 
     driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
     time.sleep(10)
@@ -29,8 +29,7 @@ def test_code(browsertype):
     time.sleep(10)
 
 
-#Add an employee
-
+#Navigate to PIM and create a new employee
     driver.find_element(By.CSS_SELECTOR, value="button.oxd-button--secondary:nth-child(1)").click()
     time.sleep(10)
     driver.find_element(By.XPATH, value='//input[@placeholder="First Name"]').send_keys("Amaila")
@@ -68,7 +67,7 @@ def test_code(browsertype):
     time.sleep(5)
 
 
-#Go to Admin create admin
+#Navigate to Admin section using left side panel
     driver.find_element(By.CSS_SELECTOR, value="a[href='/web/index.php/admin/viewAdminModule']").click()
     time.sleep(10)
     driver.find_element(By.CSS_SELECTOR, value="button.oxd-button--secondary:nth-child(1)").click()
@@ -79,7 +78,8 @@ def test_code(browsertype):
 
     #driver.find_element(By.CSS_SELECTOR, value="div.oxd-select-option:nth-child(2) > span").click()
     time.sleep(3)
-
+    
+# Add a new user by using above created employee name by keeping the status as enabled
     #EmployeeName
     search=driver.find_element(By.XPATH, value='//input[@placeholder="Type for hints..."]')
     search.send_keys("Amaila")
@@ -90,17 +90,7 @@ def test_code(browsertype):
     #actionChains.click(search_dropdown).perform()
 
     #auto_com=driver.find_element(By.XPATH, value='//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/div/div[2]/div/div/div[2]')
-    time.sleep(5)
-
-
-
-
-
-
-
-    time.sleep(5)
-
-
+    time.sleep(10)
 
     #Enabled?
     ele2 = driver.find_element(By.CSS_SELECTOR, value='div.oxd-grid-item:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)')
@@ -119,7 +109,7 @@ def test_code(browsertype):
     time.sleep(2)
     driver.find_element(By.XPATH, value='//button[@type="submit"]').click()
 
-    #Go to Admin and search for user created
+#Once the user is created search for the user in admin section & Verify user created
 
     driver.find_element(By.CSS_SELECTOR, value="a[href='/web/index.php/admin/viewAdminModule']").click()
     time.sleep(5)
@@ -134,17 +124,16 @@ def test_code(browsertype):
 
 
     #select admin in User Role
-
     driver.find_element(By.CSS_SELECTOR,value="div.oxd-grid-item:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)").click()
     time.sleep(5)
     driver.find_element(By.XPATH, value="//button[@type='submit']").click()
-
-    #Logout from application
+    
+#Logout from application
     driver.find_element(By.CSS_SELECTOR,value="i.oxd-icon:nth-child(3)").click()
     driver.find_element(By.XPATH, value='//a[@href="/web/index.php/auth/logout"]').click()
     time.sleep(5)
-
-    #Login with new credentials
+   
+#Re Login to application using the above created user
     driver.find_element(By.XPATH, value="//input[@placeholder='Username']").send_keys("AmailaMarry")
     driver.find_element(By.XPATH, value="//input[@placeholder='Password']").send_keys("Amaila01234@pw")
     driver.find_element(By.XPATH, value="//button[@type='submit']").click()
